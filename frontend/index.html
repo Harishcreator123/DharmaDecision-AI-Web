@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="DharmaDecision-AI is a source-grounded ethical decision support system inspired by Vidura Niti.">
+
+    <title>DharmaDecision-AI</title>
+
+    <link rel="stylesheet"
+          href="static/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            ⚖️ DharmaDecision-AI
+        </div>
+
+        <nav>
+
+            <a href="#home">Home</a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Main Website -->
+
+    <main>
+
+
+        <!-- Hero Section -->
+
+        <section id="home"
+                 class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    VIDURA NITI • AI DECISION SUPPORT
+                </p>
+
+
+                <h1>
+                    Think through difficult
+                    decisions with evidence.
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Enter a modern ethical dilemma and receive
+                    an explainable recommendation supported by
+                    relevant principles from Vidura Niti.
+
+                </p>
+
+
+                <!-- Question Box -->
+
+                <div class="question-card">
+
+                    <label for="dilemma">
+
+                        Your Ethical Dilemma
+
+                    </label>
+
+
+                    <textarea
+                        id="dilemma"
+                        placeholder="Example: Should a manager promote a close friend instead of a more qualified employee?"
+                    ></textarea>
+
+
+                    <div class="button-row">
+
+                        <span class="hint">
+
+                            Ask about fairness, leadership,
+                            honesty, trust or consequences.
+
+                        </span>
+
+
+                        <button id="analyzeButton">
+
+                            Analyze Decision →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results Section -->
+
+        <section id="results"
+                 class="results hidden">
+
+
+            <h2>
+                Decision Support
+            </h2>
+
+
+            <div class="result-grid">
+
+
+                <!-- Recommendation -->
+
+                <div class="recommendation-card">
+
+                    <p class="section-label">
+
+                        ⚖️ RECOMMENDATION
+
+                    </p>
+
+
+                    <p id="recommendation">
+
+                        Your recommendation
+                        will appear here.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Confidence -->
+
+                <div class="confidence-card">
+
+                    <p class="section-label">
+
+                        RETRIEVAL CONFIDENCE
+
+                    </p>
+
+
+                    <div class="confidence-number">
+
+                        <span id="confidence">
+                            --%
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        Semantic retrieval strength
+                    </p>
+
+
+                    <small class="confidence-note">
+
+                        Retrieval confidence based on semantic
+                        similarity to the knowledge base.
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Evidence -->
+
+            <div class="evidence-section">
+
+                <p class="section-label">
+
+                    📚 SOURCE-GROUNDED EVIDENCE
+
+                </p>
+
+
+                <h2>
+                    Top 3 Retrieved Principles
+                </h2>
+
+
+                <div id="evidenceContainer">
+
+                    <!-- JavaScript will add
+                         evidence here -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- How It Works -->
+
+        <section id="how-it-works"
+                 class="how-section">
+
+
+            <p class="section-label">
+                METHODOLOGY
+            </p>
+
+
+            <h2>
+                How DharmaDecision-AI Works
+            </h2>
+
+
+            <div class="pipeline">
+
+
+                <div class="pipeline-card">
+
+                    <span>01</span>
+
+                    <h3>
+                        Ethical Dilemma
+                    </h3>
+
+                    <p>
+                        User enters a real-world
+                        ethical question.
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-card">
+
+                    <span>02</span>
+
+                    <h3>
+                        Semantic Embedding
+                    </h3>
+
+                    <p>
+                        The question is converted
+                        into a vector representation.
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-card">
+
+                    <span>03</span>
+
+                    <h3>
+                        FAISS Retrieval
+                    </h3>
+
+                    <p>
+                        Relevant Vidura Niti principles
+                        are retrieved.
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-card">
+
+                    <span>04</span>
+
+                    <h3>
+                        Evidence
+                    </h3>
+
+                    <p>
+                        The top three relevant
+                        principles are displayed.
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-card">
+
+                    <span>05</span>
+
+                    <h3>
+                        Recommendation
+                    </h3>
+
+                    <p>
+                        The system provides
+                        explainable decision support.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+
+        <section id="about"
+                 class="about-section">
+
+
+            <div>
+
+                <p class="section-label">
+                    ABOUT
+                </p>
+
+
+                <h2>
+
+                    Ancient ethical principles.
+                    Modern decision support.
+
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                DharmaDecision-AI explores how ethical principles
+                from Vidura Niti can be connected with modern
+                artificial intelligence techniques to support
+                real-world decision making.
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <strong>
+            DharmaDecision-AI
+        </strong>
+
+
+        <span>
+            Source-Grounded Ethical Decision Support
+        </span>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="static/app.js?v=2"></script>
+
+</body>
+
+</html>

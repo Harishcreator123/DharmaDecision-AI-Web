@@ -1,0 +1,687 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f7f5ef;
+
+    background-image: url("buddha-bg.png");
+
+    background-repeat: no-repeat;
+
+    background-position: left top;
+
+    background-size: cover;
+
+    background-attachment: fixed;
+
+    color: #263238;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e1e1e1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #17324d;
+}
+
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+
+.navbar nav a {
+    text-decoration: none;
+    color: #455a64;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.navbar nav a:hover {
+    color: #168080;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 80px 8%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(248, 246, 239, 0.15),
+            rgba(248, 246, 239, 0.72)
+        );
+}
+
+
+.hero-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+
+.eyebrow {
+    color: #168080;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+
+.hero h1 {
+    max-width: 800px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(45px, 6vw, 72px);
+
+    line-height: 1.05;
+
+    color: #17324d;
+
+    margin-bottom: 25px;
+}
+
+
+.hero-description {
+    max-width: 720px;
+
+    font-size: 18px;
+
+    color: #6c757d;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   QUESTION CARD
+========================= */
+
+.question-card {
+    max-width: 1000px;
+
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+
+.question-card label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #17324d;
+
+    margin-bottom: 10px;
+}
+
+
+textarea {
+    width: 100%;
+
+    min-height: 140px;
+
+    resize: vertical;
+
+    padding: 16px;
+
+    border: 1px solid #d5dddd;
+
+    border-radius: 12px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+textarea:focus {
+    border-color: #168080;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 128, 128, 0.12);
+}
+
+
+.button-row {
+    margin-top: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.hint {
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+button {
+    background: #17324d;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+    background: #168080;
+
+    transform: translateY(-2px);
+}
+
+
+button:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+
+    transform: none;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.results {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 80px 8%;
+}
+
+
+.results > h2,
+.evidence-section h2,
+.how-section h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 40px;
+
+    color: #17324d;
+
+    margin-bottom: 30px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns: 1.5fr 0.7fr;
+
+    gap: 20px;
+}
+
+
+.recommendation-card,
+.confidence-card {
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.06);
+}
+
+
+.section-label {
+    color: #168080;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
+#recommendation {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 22px;
+
+    line-height: 1.5;
+
+    color: #17324d;
+}
+
+
+.confidence-card {
+    text-align: center;
+}
+
+
+.confidence-number {
+    width: 145px;
+
+    height: 145px;
+
+    margin: 20px auto;
+
+    border-radius: 50%;
+
+    background: #168080;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.confidence-number span {
+    width: 115px;
+
+    height: 115px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    color: #17324d;
+}
+
+
+.confidence-card > p:last-child {
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   EVIDENCE
+========================= */
+
+.evidence-section {
+    margin-top: 70px;
+}
+
+
+#evidenceContainer {
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.evidence-card {
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-left: 5px solid #bf9134;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+.evidence-rank {
+    color: #bf9134;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+
+.evidence-card h3 {
+    color: #17324d;
+
+    margin: 8px 0;
+}
+
+
+.evidence-card p {
+    color: #4f5b62;
+
+    font-size: 15px;
+}
+
+
+.evidence-source {
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-section {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 80px 8%;
+}
+
+
+.pipeline {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+
+.pipeline-card {
+    background: white;
+
+    border: 1px solid #dedede;
+
+    border-radius: 15px;
+
+    padding: 20px;
+}
+
+
+.pipeline-card span {
+    color: #bf9134;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.pipeline-card h3 {
+    color: #17324d;
+
+    margin: 10px 0;
+}
+
+
+.pipeline-card p {
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-section {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 80px 8%;
+
+    border-top: 1px solid #ddd;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+}
+
+
+.about-section h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+
+    line-height: 1.15;
+
+    color: #17324d;
+}
+
+
+.about-section > p {
+    color: #6c757d;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #17324d;
+
+    color: white;
+
+    padding: 25px 8%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+
+    .navbar nav {
+        display: none;
+    }
+
+
+    .hero {
+        padding: 60px 5%;
+    }
+
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+
+    .button-row {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    button {
+        width: 100%;
+    }
+
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .pipeline {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .about-section {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .pipeline {
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+
+    .results > h2,
+    .evidence-section h2,
+    .how-section h2 {
+        font-size: 32px;
+    }
+
+}
+/* Subtle Buddha background */
+body::before {
+    content: "";
+    position: fixed;
+    left: -40px;
+    bottom: 20px;
+    width: 260px;
+    height: 360px;
+    background-image: url("buddha-bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: -1;
+}
+.source-type {
+    display: inline-block;
+    margin: 6px 0 10px 0;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    background: rgba(0, 128, 128, 0.08);
+    color: #176b6b;
+}

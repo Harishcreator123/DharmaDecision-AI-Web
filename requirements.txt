@@ -1,0 +1,5 @@
+Flask
+faiss-cpu
+torch
+transformers
+numpy
