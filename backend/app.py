@@ -1,25 +1,22 @@
 from flask import Flask, request, jsonify, send_from_directory
 from pathlib import Path
 import json
+import math
+import re
+from collections import Counter
 
-import faiss
-import torch
-from transformers import AutoTokenizer, AutoModel
-
-
-# --------------------------------------------------
-# PROJECT PATHS
-# --------------------------------------------------
+# ---------------------------------------------------------
+# PATHS
+# ---------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parents[1]
-
 DATA_FILE = ROOT / "data" / "vidura_niti.json"
 FRONTEND_DIR = ROOT / "frontend"
 
 
-# --------------------------------------------------
-# LOAD VIDURA NITI DATA
-# --------------------------------------------------
+# ---------------------------------------------------------
+# LOAD KNOWLEDGE BASE
+# ---------------------------------------------------------
 
 with open(DATA_FILE, "r", encoding="utf-8") as file:
     records = json.load(file)
@@ -27,142 +24,135 @@ with open(DATA_FILE, "r", encoding="utf-8") as file:
 print(f"Loaded {len(records)} Vidura Niti records.")
 
 
-# --------------------------------------------------
-# LOAD MINI-LM MODEL
-# --------------------------------------------------
+# ---------------------------------------------------------
+# LIGHTWEIGHT TEXT PROCESSING
+# ---------------------------------------------------------
 
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+def tokenize(text):
+    return re.findall(r"\b[a-zA-Z0-9]+\b", text.lower())
 
-print("Loading MiniLM model...")
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModel.from_pretrained(MODEL_NAME)
-
-model.eval()
-
-print("MiniLM model loaded successfully.")
-
-
-# --------------------------------------------------
-# CREATE TEXT DOCUMENTS
-# --------------------------------------------------
 
 documents = [
-    (
-        f"Principle: {record['principle']}. "
-        f"{record['text']}"
-    )
+    f"Principle: {record['principle']}. {record['text']}"
     for record in records
 ]
 
+document_tokens = [tokenize(doc) for doc in documents]
 
-# --------------------------------------------------
-# EMBEDDING FUNCTION
-# --------------------------------------------------
+# Build vocabulary
+vocabulary = set()
 
-def create_embeddings(texts):
+for tokens in document_tokens:
+    vocabulary.update(tokens)
 
-    encoded = tokenizer(
-        texts,
-        padding=True,
-        truncation=True,
-        return_tensors="pt"
+
+# ---------------------------------------------------------
+# TF-IDF
+# ---------------------------------------------------------
+
+document_frequency = Counter()
+
+for tokens in document_tokens:
+    for word in set(tokens):
+        document_frequency[word] += 1
+
+
+N = len(documents)
+
+
+def create_vector(tokens):
+    term_frequency = Counter(tokens)
+    vector = {}
+
+    for word, count in term_frequency.items():
+
+        if word not in document_frequency:
+            continue
+
+        tf = count / len(tokens)
+
+        idf = math.log(
+            (N + 1) / (document_frequency[word] + 1)
+        ) + 1
+
+        vector[word] = tf * idf
+
+    return vector
+
+
+document_vectors = [
+    create_vector(tokens)
+    for tokens in document_tokens
+]
+
+
+def cosine_similarity(vector_a, vector_b):
+
+    if not vector_a or not vector_b:
+        return 0.0
+
+    common_words = set(vector_a) & set(vector_b)
+
+    dot_product = sum(
+        vector_a[word] * vector_b[word]
+        for word in common_words
     )
 
-    with torch.no_grad():
-
-        output = model(**encoded)
-
-    token_embeddings = output.last_hidden_state
-
-    attention_mask = encoded["attention_mask"]
-
-    mask = attention_mask.unsqueeze(-1).expand(
-        token_embeddings.size()
-    ).float()
-
-    summed = torch.sum(
-        token_embeddings * mask,
-        dim=1
+    magnitude_a = math.sqrt(
+        sum(value * value for value in vector_a.values())
     )
 
-    counts = torch.clamp(
-        mask.sum(dim=1),
-        min=1e-9
+    magnitude_b = math.sqrt(
+        sum(value * value for value in vector_b.values())
     )
 
-    embeddings = summed / counts
+    if magnitude_a == 0 or magnitude_b == 0:
+        return 0.0
 
-    embeddings = torch.nn.functional.normalize(
-        embeddings,
-        p=2,
-        dim=1
-    )
-
-    return embeddings.cpu().numpy().astype("float32")
+    return dot_product / (magnitude_a * magnitude_b)
 
 
-# --------------------------------------------------
-# CREATE FAISS INDEX
-# --------------------------------------------------
-
-print("Creating embeddings...")
-
-embeddings = create_embeddings(documents)
-
-index = faiss.IndexFlatIP(
-    embeddings.shape[1]
-)
-
-index.add(embeddings)
-
-print(
-    f"FAISS index created with {len(records)} documents."
-)
-
-
-# --------------------------------------------------
-# RETRIEVE EVIDENCE
-# --------------------------------------------------
+# ---------------------------------------------------------
+# RETRIEVAL
+# ---------------------------------------------------------
 
 def retrieve_evidence(query, k=3):
 
-    query_embedding = create_embeddings([query])
+    query_tokens = tokenize(query)
+    query_vector = create_vector(query_tokens)
 
-    scores, indices = index.search(
-        query_embedding,
-        min(k, len(records))
-    )
+    scored_documents = []
 
-    results = []
+    for index, document_vector in enumerate(document_vectors):
 
-    for rank, idx in enumerate(
-        indices[0],
-        start=1
-    ):
+        similarity = cosine_similarity(
+            query_vector,
+            document_vector
+        )
 
-        record = records[int(idx)]
+        record = records[index]
 
-        results.append({
-            "rank": rank,
+        scored_documents.append({
             "id": record["id"],
             "principle": record["principle"],
             "text": record["text"],
             "source": record["source"],
             "parva": record["parva"],
             "section": record["section"],
-            "similarity": round(
-                float(scores[0][rank - 1]),
-                4
-            )
+            "similarity": round(similarity, 4)
         })
 
-    return results
+    scored_documents.sort(
+        key=lambda item: item["similarity"],
+        reverse=True
+    )
+
+    return scored_documents[:k]
 
 
-# --------------------------------------------------
+# ---------------------------------------------------------
 # DISPLAY CONFIDENCE
-# --------------------------------------------------
+# ---------------------------------------------------------
 
 def display_confidence(evidence):
 
@@ -171,18 +161,8 @@ def display_confidence(evidence):
 
     similarity = evidence[0]["similarity"]
 
-    similarity = max(
-        -1.0,
-        min(1.0, similarity)
-    )
-
-    normalized = (
-        (similarity + 1.0) / 2.0
-    )
-
-    confidence = 85.0 + (
-        normalized * 15.0
-    )
+    # Display score only; not a statistical probability.
+    confidence = 85.0 + (similarity * 15.0)
 
     return round(
         max(85.0, min(100.0, confidence)),
@@ -190,44 +170,46 @@ def display_confidence(evidence):
     )
 
 
-# --------------------------------------------------
+# ---------------------------------------------------------
 # RECOMMENDATION
-# --------------------------------------------------
+# ---------------------------------------------------------
 
 def generate_recommendation(dilemma, evidence):
 
     if not evidence:
-        return "No sufficiently relevant Vidura Niti evidence was retrieved."
+        return (
+            "No sufficiently relevant Vidura Niti evidence "
+            "was retrieved."
+        )
 
     top = evidence[0]
 
-    principle = (
-        top.get("principle")
-        or "Relevant Vidura Niti principle"
+    principle = top.get(
+        "principle",
+        "Relevant Vidura Niti principle"
     )
 
-    principle_text = (
-        top.get("text")
-        or ""
+    principle_text = top.get(
+        "text",
+        ""
     )
 
     return (
         f"The retrieved principle is {principle}. "
         f"{principle_text} "
-        f"Apply this principle to the situation while considering "
-        f"fairness, responsibility, and the consequences of the decision."
+        f"Apply this principle to the situation while "
+        f"considering fairness, responsibility, and the "
+        f"consequences of the decision."
     )
 
 
-# --------------------------------------------------
-# FLASK
-# --------------------------------------------------
+# ---------------------------------------------------------
+# FLASK APPLICATION
+# ---------------------------------------------------------
 
 app = Flask(
     __name__,
-    static_folder=str(
-        FRONTEND_DIR / "static"
-    )
+    static_folder=str(FRONTEND_DIR / "static")
 )
 
 
@@ -246,14 +228,12 @@ def health():
     return jsonify({
         "status": "ok",
         "service": "DharmaDecision-AI",
+        "retrieval": "TF-IDF",
         "evidence_count": len(records)
     })
 
 
-@app.route(
-    "/api/analyze",
-    methods=["POST"]
-)
+@app.route("/api/analyze", methods=["POST"])
 def analyze():
 
     data = request.get_json(
@@ -280,9 +260,9 @@ def analyze():
     )
 
     recommendation = generate_recommendation(
-    dilemma,
-    evidence
-)
+        dilemma,
+        evidence
+    )
 
     return jsonify({
         "dilemma": dilemma,
@@ -292,9 +272,9 @@ def analyze():
     })
 
 
-# --------------------------------------------------
-# START SERVER
-# --------------------------------------------------
+# ---------------------------------------------------------
+# LOCAL DEVELOPMENT
+# ---------------------------------------------------------
 
 if __name__ == "__main__":
 
