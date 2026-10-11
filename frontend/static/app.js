@@ -7,12 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const analyzeButton =
     document.getElementById("analyzeButton") ||
-    document.querySelector(
-      'button[type="submit"], button'
-    );
+    document.querySelector('button[type="submit"], button');
 
-  let results =
-    document.getElementById("results");
+  let results = document.getElementById("results");
 
   if (!results) {
     results = document.createElement("section");
@@ -22,75 +19,181 @@ document.addEventListener("DOMContentLoaded", () => {
       "background:#fff;border:1px solid #ddd;" +
       "border-radius:14px;display:none;";
 
-    const main =
-      document.querySelector("main") ||
-      document.body;
-
     const questionBox =
-      input?.closest("form") ||
-      input?.parentElement;
+      input?.closest("form") || input?.parentElement;
 
     if (questionBox) {
-      questionBox.insertAdjacentElement(
-        "afterend",
-        results
-      );
+      questionBox.insertAdjacentElement("afterend", results);
     } else {
-      main.appendChild(results);
+      (document.querySelector("main") || document.body)
+        .appendChild(results);
     }
   }
 
   function escapeHTML(value) {
-    return String(value ?? "").replace(
-      /[&<>"']/g,
-      char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]
-    );
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
   }
 
-  function showError(message) {
+  function showError(title, message) {
     results.style.display = "block";
     results.innerHTML =
-      `<h2>Analysis could not be completed</h2>` +
+      `<h2>${escapeHTML(title)}</h2>` +
       `<p>${escapeHTML(message)}</p>`;
+
     results.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
   }
 
+  function getHttpError(response, data) {
+    switch (response.status) {
+      case 400:
+        return {
+          title: "Invalid Request",
+          message: data.error ||
+            "Your request could not be processed. Please check your dilemma and try again."
+        };
+
+      case 404:
+        return {
+          title: "Analysis Service Not Found",
+          message:
+            "The analysis endpoint could not be found. Please contact the administrator."
+        };
+
+      case 408:
+        return {
+          title: "Request Timed Out",
+          message:
+            "The server took too long to process your request. Please try again."
+        };
+
+      case 429:
+        return {
+          title: "Too Many Requests",
+          message:
+            "Too many analysis requests were sent in a short time. Please wait a moment and try again."
+        };
+
+      case 500:
+        return {
+          title: "Internal Server Error",
+          message:
+            "The analysis server encountered an internal error while processing your dilemma. Please try again later."
+        };
+
+      case 502:
+        return {
+          title: "Analysis Service Temporarily Unavailable",
+          message:
+            "The server gateway could not obtain a valid response from the analysis service. Please try again shortly."
+        };
+
+      case 503:
+        return {
+          title: "Analysis Service Unavailable",
+          message:
+            "The analysis service is temporarily unavailable. Please try again later."
+        };
+
+      case 504:
+        return {
+          title: "Server Timeout",
+          message:
+            "The server gateway waited too long for the analysis service. Please try again."
+        };
+
+      default:
+        return {
+          title: "Analysis Request Failed",
+          message:
+            `The server returned HTTP ${response.status}. Please try again later.`
+        };
+    }
+  }
+
   async function analyze() {
-    const dilemma = input?.value?.trim();
+    const dilemma = input?.value?.trim() || "";
 
     if (!dilemma) {
-      showError("Please enter an ethical dilemma first.");
+      showError(
+        "Dilemma Required",
+        "Please enter an ethical dilemma before clicking Analyze Decision."
+      );
+      input?.focus();
       return;
     }
 
-    analyzeButton.disabled = true;
+    if (dilemma.length < 10) {
+      showError(
+        "More Details Needed",
+        "Please describe your ethical dilemma in at least 10 characters so the system has enough information to analyze it."
+      );
+      input?.focus();
+      return;
+    }
+
+    if (analyzeButton) {
+      analyzeButton.disabled = true;
+    }
+
     results.style.display = "block";
     results.innerHTML = "<p>Analyzing your dilemma…</p>";
 
+    let timeoutId;
+
     try {
+      const controller = new AbortController();
+
+      timeoutId = setTimeout(() => controller.abort(), 30000);
+
       const response = await fetch("/api/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ dilemma })
+        body: JSON.stringify({ dilemma }),
+        signal: controller.signal
       });
 
-      const data = await response.json();
+      clearTimeout(timeoutId);
+
+      const contentType = response.headers.get("content-type") || "";
+      let data = {};
+
+      if (contentType.includes("application/json")) {
+        try {
+          data = await response.json();
+        } catch {
+          showError(
+            "Invalid Server Response",
+            "The server returned unreadable JSON. Please try again later."
+          );
+          return;
+        }
+      } else if (!response.ok) {
+        const errorInfo = getHttpError(response, {});
+        showError(errorInfo.title, errorInfo.message);
+        return;
+      } else {
+        showError(
+          "Unexpected Server Response",
+          "The server did not return the expected analysis data. Please try again later."
+        );
+        return;
+      }
 
       if (!response.ok) {
-        throw new Error(
-          data.error || `Server returned ${response.status}`
-        );
+        const errorInfo = getHttpError(response, data);
+        showError(errorInfo.title, errorInfo.message);
+        return;
       }
 
       const evidence = Array.isArray(data.evidence)
@@ -163,9 +266,28 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
     } catch (error) {
-      showError(error.message || "Unknown error.");
+      if (timeoutId) clearTimeout(timeoutId);
+
+      if (error.name === "AbortError") {
+        showError(
+          "Analysis Timed Out",
+          "The analysis did not respond within 30 seconds. The server may be starting up or taking too long. Please try again."
+        );
+      } else if (error instanceof TypeError) {
+        showError(
+          "Connection Failed",
+          "Unable to connect to the analysis server. Please check your internet connection or try again when the server is available."
+        );
+      } else {
+        showError(
+          "Unexpected Error",
+          "An unexpected problem occurred while analyzing your dilemma. Please try again."
+        );
+      }
     } finally {
-      analyzeButton.disabled = false;
+      if (analyzeButton) {
+        analyzeButton.disabled = false;
+      }
     }
   }
 
