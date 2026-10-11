@@ -1,84 +1,353 @@
 
 [
   {
-    "id": "VN-001",
+    "id": "UP-001",
     "principle": "Ethical Decision Making",
     "text": "A wise decision-maker should consider the ethical consequences of an action and should not sacrifice sound judgment for immediate personal benefit.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXIII, Vidura Niti",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXIII"
+    "section": "XXXIII",
+    "episode": "Vidura's counsel to Dhritarashtra",
+    "dilemma_examples": [
+      "Should I choose personal benefit over what is ethically right?",
+      "How should I make a difficult decision that affects other people?"
+    ]
   },
   {
-    "id": "VN-002",
+    "id": "UP-002",
     "principle": "Truthful Advice",
     "text": "A good adviser should communicate honestly and should not distort important matters merely to please a powerful person.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXIV, Vidura Niti",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXIV"
+    "section": "XXXIV",
+    "episode": "Vidura's counsel to Dhritarashtra",
+    "dilemma_examples": [
+      "Should I tell my manager the truth even if they dislike it?",
+      "Should an adviser hide an uncomfortable fact from a leader?"
+    ]
   },
   {
-    "id": "VN-003",
-    "principle": "Leadership",
-    "text": "A leader should control harmful desires and avoid decisions driven by anger, greed, fear, or attachment.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXV, Vidura Niti",
+    "id": "UP-003",
+    "principle": "Leadership and Self-Control",
+    "text": "A leader should avoid decisions driven by anger, greed, fear, pride, or personal attachment.",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXV"
+    "section": "XXXV",
+    "episode": "Vidura's counsel to Dhritarashtra",
+    "dilemma_examples": [
+      "Should I punish someone while I am angry?",
+      "How can a leader avoid favoritism when making a decision?"
+    ]
   },
   {
-    "id": "VN-004",
+    "id": "UP-004",
     "principle": "Self-Control",
     "text": "Important decisions should be approached with restraint and reflection rather than being driven by temporary emotions or impulses.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXVI, Vidura Niti",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXVI"
+    "section": "XXXVI",
+    "episode": "Vidura's counsel",
+    "dilemma_examples": [
+      "Should I confront someone immediately after an argument?",
+      "Should I delay an important decision until I can think calmly?"
+    ]
   },
   {
-    "id": "VN-005",
+    "id": "UP-005",
     "principle": "Good Counsel",
     "text": "A capable adviser considers consequences carefully and gives counsel that protects long-term welfare rather than short-term advantage.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXVI, Vidura Niti",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXVI"
+    "section": "XXXVI",
+    "episode": "Vidura's counsel",
+    "dilemma_examples": [
+      "Should a leader listen to advice that challenges their wishes?",
+      "Should I choose advice that is honest or advice that is pleasing?"
+    ]
   },
   {
-    "id": "VN-006",
+    "id": "UP-006",
     "principle": "Trust",
-    "text": "A leader should distinguish between trustworthy and untrustworthy people and should choose advisers based on character and wisdom.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXVII, Vidura Niti",
+    "text": "A leader should assess the character, reliability, and wisdom of people before placing important responsibilities in their hands.",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXVII"
+    "section": "XXXVII",
+    "episode": "Vidura's counsel",
+    "dilemma_examples": [
+      "Should I trust a friend who has repeatedly broken promises?",
+      "Should I choose a capable person or a close friend for a position of responsibility?"
+    ]
   },
   {
-    "id": "VN-007",
-    "principle": "Consequences",
-    "text": "Actions should be judged not only by immediate results but also by their future consequences for the individual and the wider community.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXVIII, Vidura Niti",
+    "id": "UP-007",
+    "principle": "Long-Term Consequences",
+    "text": "Actions should be judged not only by immediate results but also by their future consequences for individuals and the wider community.",
+    "source": "Mahabharata, Udyoga Parva, Vidura Niti",
     "source_type": "Paraphrase",
     "parva": "Udyoga Parva",
-    "section": "XXXVIII"
+    "section": "XXXVIII",
+    "episode": "Vidura's counsel",
+    "dilemma_examples": [
+      "Should I take a short-term benefit if it could harm others later?",
+      "How should I compare immediate gains with long-term consequences?"
+    ]
   },
   {
-    "id": "VN-008",
-    "principle": "Justice",
-    "text": "A leader should act with fairness and justice when making decisions. Personal relationships, favoritism, or personal advantage should not override merit, qualifications, or the welfare of others.",
-    "source": "Mahabharata, Udyoga Parva, Section XXXIX, Vidura Niti",
-    "source_type": "Paraphrase",
+    "id": "UP-008",
+    "principle": "Justice and Fairness",
+    "text": "A responsible leader should consider fairness and the rights of others rather than allowing personal relationships or self-interest to determine every decision.",
+    "source": "Mahabharata, Udyoga Parva, ethical interpretation",
+    "source_type": "Modern Interpretation",
     "parva": "Udyoga Parva",
-    "section": "XXXIX"
+    "section": "To be verified",
+    "episode": "Dispute over the Pandavas' rightful share",
+    "dilemma_examples": [
+      "Should I accept an unfair settlement just to avoid confrontation?",
+      "Should a manager favor a friend over a more qualified employee?"
+    ]
   },
   {
-    "id": "VN-009",
+    "id": "UP-009",
+    "principle": "Peaceful Negotiation",
+    "text": "Before resorting to conflict, parties may attempt negotiation and a peaceful settlement, while carefully considering justice and the consequences of compromise.",
+    "source": "Mahabharata, Udyoga Parva, modern paraphrase of the peace mission narrative",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Krishna's peace mission; exact section to be verified",
+    "episode": "Krishna's embassy to the Kaurava court",
+    "dilemma_examples": [
+      "Should I compromise to prevent a serious conflict?",
+      "When should I continue negotiating instead of escalating a dispute?"
+    ]
+  },
+  {
+    "id": "UP-010",
+    "principle": "Fair Compromise",
+    "text": "A proposed compromise should be evaluated in terms of fairness, the rights of the parties, and whether it offers a sustainable resolution rather than merely postponing a dispute.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation of the peace negotiations",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Peace negotiations; exact section to be verified",
+    "episode": "Negotiations between the Pandavas and Kauravas",
+    "dilemma_examples": [
+      "Should I accept a compromise that leaves an important injustice unresolved?",
+      "How can I negotiate without giving up legitimate rights?"
+    ]
+  },
+  {
+    "id": "UP-011",
+    "principle": "Diplomacy Before Conflict",
+    "text": "Diplomatic efforts can provide an opportunity to resolve disagreements before they cause greater harm, even when success is uncertain.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Krishna's embassy; exact section to be verified",
+    "episode": "Attempt to prevent the war",
+    "dilemma_examples": [
+      "Should I attempt mediation before taking a dispute to a higher authority?",
+      "Should I make one more effort to negotiate when tensions are high?"
+    ]
+  },
+  {
+    "id": "UP-012",
+    "principle": "Responsibility of Decision-Makers",
+    "text": "People in positions of authority should consider how their choices affect not only themselves but also the people who depend on them.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "To be verified",
+    "episode": "Royal decisions and preparations for conflict",
+    "dilemma_examples": [
+      "Should a leader make a risky decision that could harm many people?",
+      "Who should be held responsible when a leader ignores foreseeable harm?"
+    ]
+  },
+  {
+    "id": "UP-013",
+    "principle": "Loyalty Versus Justice",
+    "text": "Loyalty to a friend or supporter can conflict with the responsibility to recognize wrongdoing and act fairly.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation of character conflicts",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Relevant episodes to be verified",
+    "episode": "Relationships and competing obligations before the war",
+    "dilemma_examples": [
+      "Should I support a friend whose actions are unjust?",
+      "Should I report wrongdoing committed by someone who has helped me?"
+    ]
+  },
+  {
+    "id": "UP-014",
+    "principle": "Choosing Allies",
+    "text": "When choosing allies, decision-makers should consider reliability, shared objectives, capabilities, and the likely consequences of cooperation.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation of alliance-building",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Alliance episodes; exact sections to be verified",
+    "episode": "The Pandavas and Kauravas seek support",
+    "dilemma_examples": [
+      "Should I choose a powerful ally whose values conflict with mine?",
+      "Should I cooperate with someone reliable even if they have fewer resources?"
+    ]
+  },
+  {
+    "id": "UP-015",
+    "principle": "Preparation and Prudence",
+    "text": "Important undertakings require careful preparation, an understanding of available resources, and consideration of possible risks.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Preparations for war; exact section to be verified",
+    "episode": "The parties prepare for the coming conflict",
+    "dilemma_examples": [
+      "Should I begin a major project before understanding its risks?",
+      "How should I balance urgency with careful preparation?"
+    ]
+  },
+  {
+    "id": "UP-016",
+    "principle": "Pride and Conflict",
+    "text": "Pride and refusal to reconsider a position can make disputes harder to resolve and can increase the harm caused by continued conflict.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Peace negotiations; exact section to be verified",
+    "episode": "Failure to reach a peaceful settlement",
+    "dilemma_examples": [
+      "Should I apologize even when doing so feels humiliating?",
+      "Should I continue an argument simply because I do not want to lose?"
+    ]
+  },
+  {
+    "id": "UP-017",
+    "principle": "Duty and Personal Relationships",
+    "text": "People may face difficult choices when personal relationships conflict with obligations, commitments, or the welfare of others.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Character conflicts; exact section to be verified",
+    "episode": "Competing loyalties before the war",
+    "dilemma_examples": [
+      "Should I fulfill a duty when it conflicts with a personal relationship?",
+      "Should family loyalty override my professional responsibilities?"
+    ]
+  },
+  {
+    "id": "UP-018",
+    "principle": "Reconsidering a Decision",
+    "text": "A decision-maker should be willing to reconsider a position when new information, sound reasoning, or a peaceful alternative becomes available.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Peace negotiations; exact section to be verified",
+    "episode": "Attempts to find an alternative to war",
+    "dilemma_examples": [
+      "Should I change my decision after learning new facts?",
+      "Is it wise to reconsider a position that I have already defended publicly?"
+    ]
+  },
+  {
+    "id": "UP-019",
+    "principle": "Consequences of Escalation",
+    "text": "Before escalating a dispute, people should consider whether their response may increase harm, reduce future options, or make reconciliation more difficult.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "To be verified",
+    "episode": "Escalation from dispute to preparations for war",
+    "dilemma_examples": [
+      "Should I retaliate against someone who has insulted me?",
+      "Could a harsh response make a workplace dispute worse?"
+    ]
+  },
+  {
+    "id": "UP-020",
+    "principle": "Honest Communication",
+    "text": "Clear and honest communication helps people understand disagreements, evaluate proposals, and make decisions with better awareness of the facts.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Diplomatic missions; exact section to be verified",
+    "episode": "Messages and proposals exchanged between the parties",
+    "dilemma_examples": [
+      "Should I disclose a problem before it becomes worse?",
+      "Should I communicate an unpopular truth to my team?"
+    ]
+  },
+  {
+    "id": "UP-021",
+    "principle": "Understanding Opposing Positions",
+    "text": "Before deciding how to respond to a disagreement, a person should understand the other party's position, claims, and concerns without assuming that every claim is justified.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Peace negotiations; exact section to be verified",
+    "episode": "The parties present their claims and demands",
+    "dilemma_examples": [
+      "Should I hear the other person's explanation before judging them?",
+      "How should I respond when two people give conflicting accounts?"
+    ]
+  },
+  {
+    "id": "UP-022",
+    "principle": "Power and Responsibility",
+    "text": "Having power does not remove the responsibility to consider justice, consequences, and the welfare of people affected by a decision.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Royal court and leadership episodes; exact section to be verified",
+    "episode": "Leadership decisions in Hastinapura",
+    "dilemma_examples": [
+      "Should a powerful manager be allowed to ignore company rules?",
+      "How should an authority figure respond when their own decision causes harm?"
+    ]
+  },
+  {
+    "id": "UP-023",
+    "principle": "Weighing the Cost of Conflict",
+    "text": "Before choosing confrontation, decision-makers should examine the likely costs, risks, and effects on people who may not have caused the dispute.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Preparations for war; exact section to be verified",
+    "episode": "The consequences anticipated before the war",
+    "dilemma_examples": [
+      "Should I pursue a dispute if innocent people may suffer?",
+      "Is winning an argument worth damaging a long-term relationship?"
+    ]
+  },
+  {
+    "id": "UP-024",
+    "principle": "Commitment and Reassessment",
+    "text": "Commitments matter, but a responsible person should still examine the fairness and consequences of the actions required by a commitment.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation",
+    "source_type": "Modern Interpretation",
+    "parva": "Udyoga Parva",
+    "section": "Character and duty episodes; exact section to be verified",
+    "episode": "Competing obligations and loyalties",
+    "dilemma_examples": [
+      "Should I keep a promise that would cause serious harm?",
+      "How should I respond when a commitment conflicts with fairness?"
+    ]
+  },
+  {
+    "id": "UP-025",
     "principle": "Responsible Leadership",
-    "text": "A responsible leader should combine wisdom, self-control, truthfulness, fairness, and concern for the welfare of others.",
-    "source": "Mahabharata, Udyoga Parva, Section XL, Vidura Niti",
-    "source_type": "Paraphrase",
+    "text": "Responsible leadership requires careful judgment, openness to counsel, consideration of consequences, and concern for the welfare of others.",
+    "source": "Mahabharata, Udyoga Parva, modern interpretation informed by Vidura Niti and the wider narrative",
+    "source_type": "Modern Interpretation",
     "parva": "Udyoga Parva",
-    "section": "XL"
+    "section": "Multiple episodes; individual references to be verified",
+    "episode": "Counsel, diplomacy, and royal decision-making",
+    "dilemma_examples": [
+      "How should a leader balance personal loyalty and public responsibility?",
+      "What should a leader do when every available option has disadvantages?"
+    ]
   }
 ]
