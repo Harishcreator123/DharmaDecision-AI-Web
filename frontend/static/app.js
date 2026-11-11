@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       timeoutId = setTimeout(() => controller.abort(), 30000);
 
-      const response = await fetch("/api/analyze", {
+      const response = await fetch("https://dharma-decision-ai.onrender.com/api/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
