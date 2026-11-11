@@ -29,6 +29,7 @@ app = Flask(
     __name__,
     static_folder=str(FRONTEND_DIR / "static")
 )
+CORS(app)
 
 
 # ============================================================
