@@ -6,8 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111827">
   <meta name="description" content="DharmaDecision-AI is an explainable ethical decision-support prototype inspired by Vidura Niti.">
+
   <title>DharmaDecision-AI | Ethical Decision Support</title>
-  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- IMPORTANT: Relative paths for GitHub Pages -->
+  <link rel="stylesheet" href="./static/style.css">
+
   <style>
     :root {
       --dd-bg: #f6f7fb;
@@ -18,9 +22,13 @@
       --dd-border: #e0e5ee;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -30,7 +38,9 @@
       line-height: 1.65;
     }
 
-    a { color: inherit; }
+    a {
+      color: inherit;
+    }
 
     .dd-nav {
       position: sticky;
@@ -70,9 +80,12 @@
       padding: 78px 20px 60px;
       text-align: center;
       color: white;
-      background:
-        linear-gradient(120deg, rgba(13,27,51,.93), rgba(35,63,112,.86)),
-        url("/static/buddha-bg.png") center/cover;
+      background: linear-gradient(
+        120deg,
+        #15243d,
+        #233f70,
+        #3c5684
+      );
     }
 
     .dd-eyebrow {
@@ -198,7 +211,9 @@
       overflow-wrap: anywhere;
     }
 
-    #results:empty { display: none; }
+    #results:empty {
+      display: none;
+    }
 
     .dd-result-card {
       padding: 16px;
@@ -208,7 +223,9 @@
       background: #fbfcff;
     }
 
-    .dd-result-card h3 { margin-top: 0; }
+    .dd-result-card h3 {
+      margin-top: 0;
+    }
 
     .dd-meta {
       color: var(--dd-muted);
@@ -228,7 +245,9 @@
       letter-spacing: 1px;
     }
 
-    .dd-grid h3 { margin: 8px 0; }
+    .dd-grid h3 {
+      margin: 8px 0;
+    }
 
     .dd-grid p {
       margin-bottom: 0;
@@ -256,20 +275,31 @@
         gap: 8px;
       }
 
-      .dd-navlinks { gap: 14px; }
+      .dd-navlinks {
+        gap: 14px;
+      }
 
-      .dd-hero { padding-top: 55px; }
+      .dd-hero {
+        padding-top: 55px;
+      }
 
-      .dd-grid { grid-template-columns: 1fr; }
+      .dd-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .dd-card, #results { padding: 18px; }
+      .dd-card,
+      #results {
+        padding: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <header class="dd-nav">
     <a class="dd-brand" href="#home">DharmaDecision-AI</a>
+
     <nav class="dd-navlinks" aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#analyze">Analyze</a>
@@ -279,26 +309,40 @@
   </header>
 
   <main>
+
     <section class="dd-hero" id="home">
-      <span class="dd-eyebrow">Explainable Ethical Decision Support</span>
+      <span class="dd-eyebrow">
+        Explainable Ethical Decision Support
+      </span>
+
       <h1>Ancient Wisdom for Modern Dilemmas</h1>
+
       <p>
         Explore ethical questions through principles inspired by Vidura Niti.
         Examine supporting evidence, consider consequences, and make a more
         thoughtful decision.
       </p>
-      <a class="dd-button" href="#analyze">Analyze a Dilemma</a>
+
+      <a class="dd-button" href="#analyze">
+        Analyze a Dilemma
+      </a>
     </section>
 
     <section class="dd-section" id="analyze">
-      <h2 class="dd-section-heading">Analyze Your Ethical Dilemma</h2>
+
+      <h2 class="dd-section-heading">
+        Analyze Your Ethical Dilemma
+      </h2>
+
       <p class="dd-section-intro">
         Describe your situation clearly. The system retrieves potentially
         relevant principles from its current knowledge base.
       </p>
 
       <div class="dd-card">
+
         <form id="analysisForm">
+
           <label class="dd-label" for="dilemma">
             What ethical decision are you facing?
           </label>
@@ -317,6 +361,7 @@
           </p>
 
           <div class="dd-form-actions">
+
             <button
               class="dd-button"
               id="analyzeButton"
@@ -324,22 +369,40 @@
             >
               Analyze Decision
             </button>
-            <span class="dd-form-note" id="formStatus" role="status"></span>
+
+            <span
+              class="dd-form-note"
+              id="formStatus"
+              role="status"
+            ></span>
+
           </div>
+
         </form>
+
       </div>
 
-      <section id="results" aria-live="polite" aria-atomic="true"></section>
+      <section
+        id="results"
+        aria-live="polite"
+        aria-atomic="true"
+      ></section>
+
     </section>
 
     <section class="dd-section" id="methodology">
-      <h2 class="dd-section-heading">How DharmaDecision-AI Works</h2>
+
+      <h2 class="dd-section-heading">
+        How DharmaDecision-AI Works
+      </h2>
+
       <p class="dd-section-intro">
         A lightweight, explainable retrieval pipeline connects a user's question
         with candidate ethical principles in the available corpus.
       </p>
 
       <div class="dd-grid">
+
         <article class="dd-card">
           <span class="dd-step-number">01</span>
           <h3>Ethical Dilemma</h3>
@@ -394,14 +457,20 @@
             retrain the retrieval system.
           </p>
         </article>
+
       </div>
     </section>
 
     <section class="dd-section dd-about" id="about">
-      <h2 class="dd-section-heading">About DharmaDecision-AI</h2>
+
+      <h2 class="dd-section-heading">
+        About DharmaDecision-AI
+      </h2>
+
       <p class="dd-section-intro">
         Ancient ethical principles. Modern decision support.
       </p>
+
       <p>
         This academic prototype explores how principles paraphrased from
         Vidura Niti can be retrieved and presented as perspectives for
@@ -409,13 +478,17 @@
         critically, and source passages should be verified against reliable
         editions before formal academic citation.
       </p>
+
     </section>
+
   </main>
 
   <footer class="dd-footer">
     DharmaDecision-AI · Explainable Ethical Decision-Support Prototype
   </footer>
 
-  <script src="/static/app.js?v=3" defer></script>
+  <!-- IMPORTANT: Relative path for GitHub Pages -->
+  <script src="./static/app.js?v=4" defer></script>
+
 </body>
 </html>
